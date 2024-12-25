@@ -11,15 +11,19 @@
 // Make the necessary code changes in the struct `ReportCard` and the impl
 // block to support alphabetical report cards in addition to numerical ones.
 
+enum Grade {
+    Number(f32),
+    Letter(String),
+}
 // TODO: Adjust the struct as described above.
-struct ReportCard {
-    grade: f32,
+struct ReportCard<T> {
+    grade: T,
     student_name: String,
     student_age: u8,
 }
 
 // TODO: Adjust the impl block as described above.
-impl ReportCard {
+impl<T: std::fmt::Display> ReportCard<T> {
     fn print(&self) -> String {
         format!(
             "{} ({}) - achieved a grade of {}",
@@ -27,6 +31,26 @@ impl ReportCard {
         )
     }
 }
+
+// struct ReportCard {
+//     grade: Grade,
+//     student_name: String,
+//     student_age: u8,
+// }
+
+// // TODO: Adjust the impl block as described above.
+// impl ReportCard {
+//     fn print(&self) -> String {
+//         let grade_str = match &self.grade {
+//             Grade::Number(num) => num.to_string(),
+//             Grade::Letter(letter) => letter.to_string(),
+//         };
+//         format!(
+//             "{} ({}) - achieved a grade of {}",
+//             &self.student_name, &self.student_age, grade_str,
+//         )
+//     }
+// }
 
 fn main() {
     // You can optionally experiment here.
